@@ -1,0 +1,20 @@
+service: serverless-test
+
+frameworkVersion: '2'
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  region: eu-west-2
+
+functions:
+  hello:
+    handler: handler.run
+    environment:
+      API_URL: http://api.open-notify.org/astros.json
+    events:
+      - httpApi:
+          path: /
+          method: get
